@@ -9,12 +9,16 @@ class DataFrameReporter:
         self.percent_format = percent_format
         self.include_all = include_all
 
-    def show_report(self, 
-    df: pd.DataFrame, 
-    title: str | None = None):
-    if title is not None:
-        print (title)
-    print(f'Количество столбцов: {df.shape[1]}')
-    print(f'Количество строк: {df.shape[0]}')
-    print(f'Количество дубликатов: {df.duplicated().sum()}')
-    print(f'Доля дубликатов: {format(df.duplicated().mean(), self.percent_format)}')
+    def show_report(self, df, title=None):
+        if title:
+            print(title)
+    
+        print('Количество столбцов:', df.shape[1])
+        print('Количество строк:', df.shape[0])
+
+        duplicates = df.duplicated().sum()
+        print('Количество дубликатов:', duplicates)
+
+        print('Доля дубликатов:', format(duplicates / df.shape[0], self.percent_format))
+
+        print(df.describe(include='all' if self.include_all else None))
