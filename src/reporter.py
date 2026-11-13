@@ -3,7 +3,7 @@ class DataFrameReporter:
         self.float_format = float_format
         self.percent_format = percent_format
         self.include_all = include_all
-   def show_report(self, df, title=None):
+    def show_report(self, df, title=None):
         if title:
             print(title)
     
